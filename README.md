@@ -4,21 +4,19 @@ Live lane assignments for the Men's Textile League at Cardinal Lanes Beach Bowl 
 
 ## Files
 
-This repository uses a **flat layout**, so all files can be uploaded separately in GitHub's mobile browser:
+The site now supports **Vercel directly**:
 
-- `index.js` — complete website, Cloudflare Worker API, and lane schedule parser.
-- `wrangler.toml` — configuration for deployment to Cloudflare Workers.
-- `README.md` — this document.
+- `index.html` — complete browser UI, no build needed.
+- `api/schedule.js` — Vercel Node serverless function for the live bowling schedule.
+- `package.json` — Node ES module configuration.
+- `index.js` and `wrangler.toml` — original Cloudflare Worker deployment files (retained).
 
 ## Deploy
 
-The official schedule is fetched server-side, so GitHub Pages by itself is **not sufficient**. To deploy through Cloudflare Workers, install Node.js and run from the repository directory:
+### Vercel (recommended)
 
-```sh
-npx wrangler login
-npx wrangler deploy
-```
+Import this repository into Vercel, select **Other** as framework if prompted, and set the Root Directory to the repository root. Leave Build Command and Output Directory unset. Redeploy after updating the repository.
 
-The project has no npm dependencies. Updates to the official league source may require adjustments to the parser in `index.js`.
+The frontend uses `/api/schedule` to request current official data. If the bowling center is unavailable, the API reports a clear error instead of showing old assignments as current. You can also run `npx vercel dev` locally.
 
 Source: https://www.cardinalbeachbowl.com/leagues/mens-textile/
