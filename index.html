@@ -99,13 +99,41 @@
     @media(max-width:510px){header{min-height:76px}.logo-text{font-size:28px}.league-label{display:none}.header-link{font-size:11px;padding:10px}.hero h1{font-size:clamp(56px,13.5vw,75px)}.intro{font-size:13px}.pickbar{margin-top:26px}.picker{flex-basis:100%}.refresh{width:100%;justify-content:center}.feature-grid{gap:12px;padding-bottom:40px}.feature-content{padding:22px}.today{min-height:264px}.big-lane{font-size:100px}.next{min-height:230px}.next .big-lane{font-size:82px}.board-intro{align-items:start;gap:19px}.week-switch{width:100%}.switch-btn{flex:1}.board-wrap{padding-bottom:65px}.match{grid-template-columns:100px 1fr}.status{flex-wrap:wrap}.share{margin-left:0}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="application-name" content="Lanez">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Lanez">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style>
+    .install-trigger{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 15px;background:var(--accent);border:1px solid #ffdc83;color:#152334;font-size:12px;font-weight:800;border-radius:99px;cursor:pointer;white-space:nowrap;box-shadow:0 4px 15px #020b1022;transition:transform .16s,background .16s}
+    .install-trigger:hover{background:#ffe098;transform:translateY(-1px)}
+    .install-trigger svg{width:16px;height:16px;flex:none}
+    .install-trigger[hidden]{display:none}
+    .install-overlay[hidden]{display:none}
+    .install-overlay{position:fixed;inset:0;z-index:40;background:#061019d9;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(6px)}
+    .install-dialog{width:min(430px,100%);max-height:min(86vh,700px);overflow:auto;background:#fff;color:#172635;border-radius:23px;box-shadow:0 28px 90px #0008;padding:28px;position:relative}
+    .install-close{position:absolute;right:17px;top:15px;display:grid;place-items:center;height:35px;width:35px;background:#f0f2f2;border:0;border-radius:50%;font-size:24px;color:#526471;cursor:pointer}
+    .install-logo{display:grid;place-items:center;width:65px;height:65px;background:#0a1623;border-radius:17px;margin-bottom:20px}
+    .install-logo img{height:56px;width:56px}
+    .install-dialog h2{font:700 35px/1.12 'Oswald',Impact,sans-serif;margin:0 0 11px;text-transform:uppercase}
+    .install-desc{color:#647480;font-size:14px;line-height:1.6;margin:0 0 22px}
+    .install-steps{background:#f4f5f2;border:1px solid #e4e8e6;border-radius:14px;padding:18px 18px 18px 20px;font-size:14px;line-height:1.65;color:#253441}
+    .install-steps ol{margin:0;padding-left:20px}
+    .install-steps li+li{margin-top:9px}
+    .install-steps strong{color:#142a36}
+    .install-done{width:100%;background:#0d2030;color:#fff;border:0;border-radius:12px;padding:15px;font-weight:800;cursor:pointer;margin-top:19px}
+    .install-done:hover{background:#1e3a4b}
+    @media(max-width:510px){.header-link{display:none}.header-right{gap:9px}.install-trigger{padding:11px 12px;font-size:12px}.install-dialog{padding:24px 21px}.install-overlay{align-items:flex-end;padding:0}.install-dialog{border-radius:23px 23px 0 0;width:100%;max-height:90vh;padding-bottom:max(25px,env(safe-area-inset-bottom))}}
+  </style>
 </head>
 <body>
   <div class="dark" id="top">
     <div class="shell">
       <header>
         <a class="logo" href="#top" aria-label="Lanez home"><span class="logo-icon" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 26 26" fill="none"><circle cx="6" cy="6" r="3" fill="currentColor"/><circle cx="17" cy="6" r="3" fill="currentColor"/><path d="M7 14H21M7 20H21" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg></span><span class="logo-text">LANE<span>Z</span></span></a>
-        <div class="header-right"><span class="league-label">Men's Textile · Wilmington, NC</span><a class="header-link" href="https://www.cardinalbeachbowl.com/leagues/mens-textile/" target="_blank" rel="noopener noreferrer">Official site ↗</a></div>
+        <div class="header-right"><button id="install-app" class="install-trigger" type="button" aria-label="Install Lanez on this device"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m-4-4 4 4 4-4M4 17v3h16v-3"/></svg>Install app</button><span class="league-label">Men's Textile · Wilmington, NC</span><a class="header-link" href="https://www.cardinalbeachbowl.com/leagues/mens-textile/" target="_blank" rel="noopener noreferrer">Official site ↗</a></div>
       </header>
       <section class="hero" aria-labelledby="hero-title">
         <div class="eyebrow">Tuesday nights · 6:30 PM</div>
@@ -130,6 +158,16 @@
     <section id="match-list" class="match-grid" role="tabpanel" aria-label="Lane matchups"><div class="loading">Fetching lane assignments…</div></section>
   </main>
   <footer class="bottom-bar"><div class="shell footer-inner"><span>© LANEZ · Built for league night 🎳</span><span>Independent lane finder · <a href="https://www.cardinalbeachbowl.com/leagues/mens-textile/" target="_blank" rel="noopener noreferrer">Data source</a></span></div></footer>
+  <div id="install-modal" class="install-overlay" hidden>
+    <div class="install-dialog" role="dialog" aria-modal="true" aria-labelledby="install-title" aria-describedby="install-desc" tabindex="-1">
+      <button id="install-close" class="install-close" type="button" aria-label="Close install instructions">×</button>
+      <div class="install-logo"><img src="/icons/icon-192.png" alt=""></div>
+      <h2 id="install-title">LANEZ ON YOUR PHONE.</h2>
+      <p class="install-desc" id="install-desc">Add Lanez to your home screen for one-tap access to your lanes, with an app-style full-screen view.</p>
+      <div class="install-steps" id="install-steps"></div>
+      <button id="install-done" class="install-done" type="button">Got it</button>
+    </div>
+  </div>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <script>
     const officialUrl = 'https://www.cardinalbeachbowl.com/leagues/mens-textile/';
@@ -155,6 +193,85 @@
     el('refresh').addEventListener('click',load);
     [0,1].forEach(index=>el('tab-'+index).addEventListener('click',()=>{state.week=index;[0,1].forEach(i=>{el('tab-'+i).setAttribute('aria-selected',String(i===index));el('tab-'+i).tabIndex=i===index?0:-1});renderBoard()}));
     el('share').addEventListener('click',async()=>{const url=new URL(location.href);url.searchParams.set('team',state.selected);try{if(navigator.share){await navigator.share({title:'My Lanez bowling lanes',url:url.href})}else if(navigator.clipboard){await navigator.clipboard.writeText(url.href);toast('Team link copied!')}else{toast('Share link: '+url.href)}}catch(e){if(e.name!=='AbortError')toast('Could not share right now')}});
+
+    // PWA installation: native prompt when supported; guided fallback everywhere else.
+    let deferredInstallPrompt=null;
+    const installedMode=()=>window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
+    function syncInstallButton(){el('install-app').hidden=installedMode()}
+    window.addEventListener('beforeinstallprompt',event=>{
+      event.preventDefault();
+      deferredInstallPrompt=event;
+      syncInstallButton();
+    });
+    window.addEventListener('appinstalled',()=>{
+      deferredInstallPrompt=null;
+      el('install-modal').hidden=true;
+      syncInstallButton();
+      toast('Lanez is installed!');
+    });
+    window.matchMedia('(display-mode: standalone)').addEventListener?.('change',syncInstallButton);
+    function installationInstructions(){
+      const ua=navigator.userAgent||'';
+      const ios=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+      const android=/Android/i.test(ua);
+      const mac=/Macintosh|Mac OS X/.test(ua);
+      const safari=/Safari/i.test(ua)&&!/CriOS|FxiOS|EdgiOS|Chrome|Chromium/i.test(ua);
+      let steps;
+      if(ios){
+        steps=safari
+          ? ['Tap the <strong>Share</strong> button in Safari (square with an up arrow).','Scroll to <strong>Add to Home Screen</strong>.','Enable <strong>Open as Web App</strong> if shown, then tap <strong>Add</strong>.']
+          : ['For the most reliable install experience, open Lanez in <strong>Safari</strong>.','Tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.','Choose <strong>Open as Web App</strong> if available, then tap <strong>Add</strong>.'];
+      } else if(android){
+        steps=['Open your browser’s <strong>⋮ menu</strong> (usually at the top right).','Select <strong>Install app</strong> or <strong>Add to Home screen</strong>.','Confirm <strong>Install</strong> or <strong>Add</strong> when prompted.'];
+      } else if(mac&&safari){
+        steps=['Open the <strong>File</strong> menu in Safari.','Choose <strong>Add to Dock</strong> if your macOS version supports it.','Confirm <strong>Add</strong> to launch Lanez like an app.'];
+      } else {
+        steps=['Open your browser’s <strong>menu</strong> (or the install icon in the address bar).','Choose <strong>Install Lanez</strong>, <strong>Install app</strong>, or <strong>Create shortcut</strong>, whichever your browser offers.','Confirm to add Lanez to your desktop or app launcher.'];
+      }
+      return '<ol>'+steps.map(step=>'<li>'+step+'</li>').join('')+'</ol>';
+    }
+    let installPreviousFocus=null;
+    function closeInstallHelp(){
+      el('install-modal').hidden=true;
+      if(installPreviousFocus&&installPreviousFocus.focus)installPreviousFocus.focus();
+    }
+    function openInstallHelp(){
+      installPreviousFocus=document.activeElement;
+      el('install-steps').innerHTML=installationInstructions();
+      el('install-modal').hidden=false;
+      el('install-close').focus();
+    }
+    el('install-app').addEventListener('click',async()=>{
+      if(installedMode())return;
+      if(deferredInstallPrompt){
+        const prompt=deferredInstallPrompt;
+        deferredInstallPrompt=null;
+        try {
+          await prompt.prompt();
+          await prompt.userChoice;
+        }catch(err){
+          openInstallHelp();
+        }
+      } else {
+        openInstallHelp();
+      }
+    });
+    el('install-close').addEventListener('click',closeInstallHelp);
+    el('install-done').addEventListener('click',closeInstallHelp);
+    el('install-modal').addEventListener('click',event=>{if(event.target===el('install-modal'))closeInstallHelp()});
+    document.addEventListener('keydown',event=>{
+      if(el('install-modal').hidden)return;
+      if(event.key==='Escape')closeInstallHelp();
+      if(event.key==='Tab'){
+        const first=el('install-close'),last=el('install-done');
+        if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus()}
+        else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus()}
+      }
+    });
+    if('serviceWorker' in navigator){window.addEventListener('load',()=>{
+      navigator.serviceWorker.register('/sw.js').catch(()=>{});
+    })}
+    syncInstallButton();
     load();
   </script>
 </body>
